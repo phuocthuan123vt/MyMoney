@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Quản lý Chi tiêu" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="24" Width="189" Height="38" FontWeight="Bold"/>
+        <Label Content="Theo dõi thu chi cá nhân của bạn" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI" Foreground="#FF504F4F" Height="32"/>
+
     </Grid>
 </Window>
