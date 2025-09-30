@@ -9,6 +9,23 @@
     <Grid>
         <Label Content="Quản lý Chi tiêu" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="24" Width="189" Height="38" FontWeight="Bold"/>
         <Label Content="Theo dõi thu chi cá nhân của bạn" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI" Foreground="#FF504F4F" Height="32"/>
+        <TabControl HorizontalAlignment="Left" Height="80" Margin="60,250,0,0" VerticalAlignment="Top" Width="700">
+            <TabItem Header="Tổng quan">
+                <Grid Background="LightYellow"/>
+            </TabItem>
+            <TabItem Header="Giao dịch">
+                <Grid Background="LightGreen"/>
+            </TabItem>
+            <TabItem Header="Thống kê">
+                <Grid Background="LightBlue"/>
+            </TabItem>
+            <TabItem Header="Hạn mức">
+                <Grid Background="LightCoral"/>
+            </TabItem>
+            <TabItem Header="Danh mục">
+                <Grid Background="LightGray"/>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>
