@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Launch (WPF)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/MyMoneyDesktop/bin/Debug/net472/MyMoneyDesktop.exe",
+            "cwd": "${workspaceFolder}/MyMoneyDesktop",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        }
+    ]
+}
