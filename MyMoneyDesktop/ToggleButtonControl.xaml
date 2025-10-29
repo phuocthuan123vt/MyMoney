@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="MyMoneyDesktop.ToggleButtonControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyMoneyDesktop"
+             x:Name="control"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" 
+             PreviewMouseLeftButtonUp="ToggleButton_Click"
+             d:DesignWidth="150">
+    <UserControl.Resources>
+        <local:HalfOfConverter x:Key="halfOfConverter"/>
+        <local:CircleConverter x:Key="circleConverter"/>
+        <local:BoolToHorizontalAlignementConverter x:Key="boolToHorizontalAlignementConverter"/>
+    </UserControl.Resources>
+    <Border
+        x:Name="background"
+        Width="{Binding ElementName=control, Path=Width}"
+        Height="{Binding ElementName=control, Path=Height}"
+        Background="Gray"
+        BorderThickness="0"
+        CornerRadius="{Binding ElementName=control, Path=Height, Converter={StaticResource halfOfConverter}}" >
+        <Border Width="{Binding ElementName=control, Path=Height, Converter={StaticResource circleConverter}}"
+                Height="{Binding ElementName=control, Path=Height, Converter={StaticResource circleConverter}}"
+                Margin="3,0,0,0"
+                HorizontalAlignment="{Binding ElementName=control, Path=IsChecked, Converter={StaticResource boolToHorizontalAlignementConverter}}"
+                VerticalAlignment="Center"
+                Background="White"
+                CornerRadius="{Binding ElementName=control, Path=Height, Converter={StaticResource halfOfConverter}}"/>
+    </Border>
+</UserControl>

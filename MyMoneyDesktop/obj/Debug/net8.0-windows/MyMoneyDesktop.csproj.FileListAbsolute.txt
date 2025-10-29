@@ -29,3 +29,7 @@ D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\refint\MyMoneyD
 D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\MyMoneyDesktop.pdb
 D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\MyMoneyDesktop.genruntimeconfig.cache
 D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\ref\MyMoneyDesktop.dll
+D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\MyMoneyDesktop.sourcelink.json
+D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\ToggleButtonControl.g.cs
+D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\ToggleButtonControl.baml
+D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs

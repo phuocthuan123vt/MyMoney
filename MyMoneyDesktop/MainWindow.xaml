@@ -140,7 +140,16 @@
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <TextBlock Text="Nội dung tab Hạn mức" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                    <Grid Margin="0,20,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="150"/>
+                            <RowDefinition Height="250"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="0,0,0,10">
+                            <local:ToggleButtonControl Width="100" Height="50" OnColor="Black"/>
+                        </Grid>
+                    </Grid>
                 </TabItem.Content>
             </TabItem>
             <TabItem Style="{StaticResource MainTabItem}">

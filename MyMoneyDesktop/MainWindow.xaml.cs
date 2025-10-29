@@ -17,8 +17,8 @@ namespace MyMoneyDesktop;
 public partial class MainWindow : Window
 {
     // Nên đặt readonly nếu là dữ liệu mẫu, hoặc chuyển sang property khi cần binding
-    private decimal ThuNhap = 15_000_000m;
-    private decimal ChiTieu = 5_000_000m;
+    private decimal dThuNhap = 15_000_000m;
+    private decimal dChiTieu = 5_000_000m;
 
     public MainWindow()
     {
@@ -28,13 +28,13 @@ public partial class MainWindow : Window
 
     private void CapNhatThongTin()
     {
-        decimal soDu = ThuNhap - ChiTieu;
-        decimal tiLeTietKiem = ThuNhap > 0 ? (soDu / ThuNhap) * 100m : 0m;
+        decimal dSoDu = dThuNhap - dChiTieu;
+        decimal dTiLeTietKiem = dThuNhap > 0 ? (dSoDu / dThuNhap) * 100m : 0m;
 
-        txtThuNhap.Text = $"{ThuNhap:N0} ₫";
-        txtChiTieu.Text = $"{ChiTieu:N0} ₫";
-        txtSoDu.Text = $"{soDu:N0} ₫";
-        txtTiLeTietKiem.Text = $"{tiLeTietKiem:F1}%";
+        txtThuNhap.Text = $"{dThuNhap:N0} ₫";
+        txtChiTieu.Text = $"{dChiTieu:N0} ₫";
+        txtSoDu.Text = $"{dSoDu:N0} ₫";
+        txtTiLeTietKiem.Text = $"{dTiLeTietKiem:F1}%";
     }
 
     private void AddTransactionButton_Click(object sender, RoutedEventArgs e)
