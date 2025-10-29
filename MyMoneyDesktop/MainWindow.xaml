@@ -8,6 +8,10 @@
         Title="MyMoney - Quản lý chi tiêu" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
         Background="#F5F7FA">
+    <Window.Resources>
+        <local:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+        <DropShadowEffect x:Key="DropShadowEffect" Color="Black" Opacity="0.5" BlurRadius="10" Direction="270" ShadowDepth="5"/>
+    </Window.Resources>
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -141,14 +145,128 @@
                 </TabItem.Header>
                 <TabItem.Content>
                     <Grid Margin="0,20,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="150"/>
-                            <RowDefinition Height="250"/>
-                        </Grid.RowDefinitions>
+                        <Border Background="White"
+                                CornerRadius="10"
+                                Padding="25"
+                                BorderBrush="#E2E2E2"
+                                BorderThickness="1"
+                                SnapsToDevicePixels="True">
+                            <StackPanel>
+                                <TextBlock Text="⚙️ Quản lý Hạn mức Chi tiêu"
+                                           FontSize="18"
+                                           FontWeight="SemiBold"
+                                           Margin="0,0,0,20"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                        <Grid Grid.Row="0" Margin="0,0,0,10">
-                            <local:ToggleButtonControl Width="100" Height="50" OnColor="Black"/>
-                        </Grid>
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="Bật hạn mức chi tiêu"
+                                                   FontWeight="Bold"
+                                                   Margin="0,0,0,5"/>
+                                        <TextBlock Text="Theo dõi và cảnh báo khi chi tiêu vượt hạn mức"
+                                                   Foreground="Gray" FontSize="12"/>
+                                    </StackPanel>
+
+                                    <local:ToggleButtonControl x:Name="toggleControl"
+                                                               Grid.Column="1"
+                                                               VerticalAlignment="Center"
+                                                               Width="45" Height="25"
+                                                               OnColor="Black"/>
+                                </Grid>
+
+                                <StackPanel Margin="0,25,0,0"
+                                            Visibility="{Binding IsChecked, ElementName=toggleControl, Converter={StaticResource BoolToVisibility}}">
+                                    <Separator Margin="0,0,0,15" Opacity="0.2"/>
+
+                                    <TextBlock Text="Hạn mức chi tiêu hàng tháng"
+                                               FontWeight="Bold" Margin="0,0,0,5"/>
+                                    <Border CornerRadius="6"
+                                            Background="#F7F7F7"
+                                            Width="1200"
+                                            Height="35"
+                                            Margin="0,0,0,10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="$"
+                                                       VerticalAlignment="Center"
+                                                       Foreground="Gray"
+                                                       Margin="10,0,5,0"/>
+                                            <TextBox x:Name="txtMoneyLimit"
+                                                     GotFocus="TextBox_GotFocus"
+                                                     LostFocus="TextBox_LostFocus_MoneyLimit"
+                                                     Grid.Column="1"
+                                                     BorderThickness="0"
+                                                     Background="Transparent"
+                                                     VerticalContentAlignment="Center"
+                                                     FontSize="14"
+                                                     Padding="4,0"
+                                                     Text="10000000"/>
+                                        </Grid>
+                                    </Border>
+
+                                    <TextBlock Text="Ngưỡng cảnh báo (%)"
+                                               FontWeight="Bold" Margin="0,15,0,5"/>
+                                    <Border CornerRadius="6"
+                                            Background="#F7F7F7"
+                                            Width="1200"
+                                            Height="35"
+                                            Margin="0,0,0,10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="🔔"
+                                                       VerticalAlignment="Center"
+                                                       Foreground="Gray"
+                                                       Margin="10,0,5,0"/>
+                                            <TextBox x:Name="txtPercentageLimit"
+                                                     GotFocus="TextBox_GotFocus"
+                                                     LostFocus="TextBox_LostFocus_PercentageLimit"
+                                                     Grid.Column="1"
+                                                     BorderThickness="0"
+                                                     Background="Transparent"
+                                                     VerticalContentAlignment="Center"
+                                                     FontSize="14"
+                                                     Padding="4,0"
+                                                     Text="80"/>
+                                        </Grid>
+                                    </Border>
+                                    
+                                    <Grid Margin="0,0,0,25">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Text="Cảnh báo khi chi tiêu đạt 80% hạn mức"
+                                                   Foreground="Gray"
+                                                   FontSize="12"
+                                                   VerticalAlignment="Center"/>
+
+                                        <Button Grid.Column="1"
+                                                Content="💾 Lưu cài đặt"
+                                                Width="130"
+                                                Height="30"
+                                                Margin="10,0,0,0"
+                                                Background="Black"
+                                                Foreground="White"
+                                                BorderThickness="0"
+                                                FontWeight="SemiBold"
+                                                Cursor="Hand"/>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
                     </Grid>
                 </TabItem.Content>
             </TabItem>

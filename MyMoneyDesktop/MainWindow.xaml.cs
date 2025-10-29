@@ -26,6 +26,40 @@ public partial class MainWindow : Window
         CapNhatThongTin();
     }
 
+    private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+    {
+        var tb = sender as TextBox;
+        if (tb.Text == "10000000")
+        {
+            tb.Text = "";
+            tb.Foreground = Brushes.Black;
+        }
+        if (tb.Text == "80")
+        {
+            tb.Text = "";
+            tb.Foreground = Brushes.Black;
+        }
+    }
+
+    private void TextBox_LostFocus_MoneyLimit(object sender, RoutedEventArgs e)
+    {
+        var tb = sender as TextBox;
+        if (string.IsNullOrWhiteSpace(tb.Text))
+        {
+            tb.Text = "10000000";
+            tb.Foreground = Brushes.Gray;
+        }
+    }
+    private void TextBox_LostFocus_PercentageLimit(object sender, RoutedEventArgs e)
+    {
+        var tb = sender as TextBox;
+        if (string.IsNullOrWhiteSpace(tb.Text))
+        {
+            tb.Text = "80";
+            tb.Foreground = Brushes.Gray;
+        }
+    }
+
     private void CapNhatThongTin()
     {
         decimal dSoDu = dThuNhap - dChiTieu;

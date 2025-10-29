@@ -69,7 +69,7 @@ namespace MyMoneyDesktop {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MyMoneyDesktop;V1.0.0.0;component/togglebuttoncontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MyMoneyDesktop;component/togglebuttoncontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ToggleButtonControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
