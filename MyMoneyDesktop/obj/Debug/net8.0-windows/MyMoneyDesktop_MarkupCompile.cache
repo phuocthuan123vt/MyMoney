@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\App.xaml
-91355362756
+10-1232246032
 
-131524246176
+141400898464
 198-344842731
-AddTransactionWindow.xaml;MainWindow.xaml;Styles\Buttons.xaml;Styles\Cards.xaml;Styles\Charts.xaml;Styles\Colors.xaml;Styles\Forms.xaml;Styles\Tabs.xaml;ToggleButtonControl.xaml;
+AddTransactionWindow.xaml;MainWindow.xaml;Styles\Buttons.xaml;Styles\Cards.xaml;Styles\Charts.xaml;Styles\Colors.xaml;Styles\Forms.xaml;Styles\Tabs.xaml;ToastNotification.xaml;ToggleButtonControl.xaml;
 
 False
 

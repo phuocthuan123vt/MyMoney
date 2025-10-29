@@ -33,3 +33,6 @@ D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\MyMoneyDesktop.
 D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\ToggleButtonControl.g.cs
 D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\ToggleButtonControl.baml
 D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\bin\Debug\net8.0-windows\MyMoneyDesktop.dll.config
+D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\ToastNotification.baml
+D:\QuanLyChiTieu\MyMoney\MyMoneyDesktop\obj\Debug\net8.0-windows\ToastNotification.g.cs
