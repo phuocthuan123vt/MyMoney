@@ -57,43 +57,67 @@
 
             <!-- Summary Cards -->
             <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,20">
+                <!-- Thu nhập -->
                 <Border Style="{StaticResource SummaryCard}">
                     <Grid>
                         <StackPanel>
                             <TextBlock Text="Thu nhập tháng này" Style="{StaticResource CardTitle}"/>
-                            <TextBlock x:Name="txtThuNhap" Text="0 ₫" Style="{StaticResource CardAmount}" Foreground="#48BB78"/>
+                            <TextBlock Text="{Binding ThuNhap, StringFormat={}{0:N0} ₫}"
+                                    Style="{StaticResource CardAmount}"
+                                    Foreground="#48BB78"/>
                         </StackPanel>
-                        <TextBlock Text="&#xE8C7;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="#48BB78" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
+                        <TextBlock Text="&#xE8C7;" FontFamily="Segoe MDL2 Assets" FontSize="20"
+                                Foreground="#48BB78"
+                                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
                     </Grid>
                 </Border>
+
+                <!-- Chi tiêu -->
                 <Border Style="{StaticResource SummaryCard}">
                     <Grid>
                         <StackPanel>
                             <TextBlock Text="Chi tiêu tháng này" Style="{StaticResource CardTitle}"/>
-                            <TextBlock x:Name="txtChiTieu" Text="0 ₫" Style="{StaticResource CardAmount}" Foreground="#F56565"/>
+                            <TextBlock Text="{Binding ChiTieu, StringFormat={}{0:N0} ₫}"
+                                    Style="{StaticResource CardAmount}"
+                                    Foreground="#F56565"/>
                         </StackPanel>
-                        <TextBlock Text="&#xE719;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="#F56565" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
+                        <TextBlock Text="&#xE719;" FontFamily="Segoe MDL2 Assets" FontSize="20"
+                                Foreground="#F56565"
+                                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
                     </Grid>
                 </Border>
+
+                <!-- Số dư -->
                 <Border Style="{StaticResource SummaryCard}">
                     <Grid>
                         <StackPanel>
                             <TextBlock Text="Số dư hiện tại" Style="{StaticResource CardTitle}"/>
-                            <TextBlock x:Name="txtSoDu" Text="0 ₫" Style="{StaticResource CardAmount}" Foreground="#4299E1"/>
+                            <TextBlock Text="{Binding SoDu, StringFormat={}{0:N0} ₫}"
+                                    Style="{StaticResource CardAmount}"
+                                    Foreground="#4299E1"/>
                         </StackPanel>
-                        <TextBlock Text="&#xE72D;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="#4299E1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
+                        <TextBlock Text="&#xE72D;" FontFamily="Segoe MDL2 Assets" FontSize="20"
+                                Foreground="#4299E1"
+                                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
                     </Grid>
                 </Border>
+
+                <!-- Tỷ lệ tiết kiệm -->
                 <Border Style="{StaticResource SummaryCard}">
                     <Grid>
                         <StackPanel>
                             <TextBlock Text="Tỷ lệ tiết kiệm" Style="{StaticResource CardTitle}"/>
-                            <TextBlock x:Name="txtTiLeTietKiem" Text="0.0%" Style="{StaticResource CardAmount}" Foreground="#ED8936"/>
+                            <TextBlock Text="{Binding TiLeTietKiem, StringFormat={}{0:F1}%}"
+                                    Style="{StaticResource CardAmount}"
+                                    Foreground="#ED8936"/>
                         </StackPanel>
-                        <TextBlock Text="&#xE870;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="#ED8936" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
+                        <TextBlock Text="&#xE870;" FontFamily="Segoe MDL2 Assets" FontSize="20"
+                                Foreground="#ED8936"
+                                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
                     </Grid>
                 </Border>
             </UniformGrid>
+
 
             <!-- Tabs -->
             <TabControl Grid.Row="2" Grid.RowSpan="2" Style="{StaticResource MainTabs}">
@@ -308,4 +332,3 @@
         </Grid>
     </Grid>
 </Window>
-
