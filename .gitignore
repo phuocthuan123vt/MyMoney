@@ -1,0 +1,17 @@
+# Visual Studio files
+.vs/
+
+# Build output folders
+MyMoneyDesktop/bin/
+MyMoneyDesktop/obj/
+
+# Temporary and user-specific files
+*.user
+*.suo
+*.cache
+*.log
+*.db
+
+# Backup and configuration files
+*.tmp
+*.bak
