@@ -46,7 +46,7 @@
 
                 <!-- Amount -->
                 <TextBlock Text="Số tiền (VNĐ)" Style="{StaticResource FormLabel}"/>
-                <TextBox Text="0" Style="{StaticResource FormTextBox}"/>
+                <TextBox Tag="0" Style="{StaticResource FormTextBox}"/>
 
                 <!-- Category -->
                 <TextBlock Text="Danh mục" Style="{StaticResource FormLabel}"/>
