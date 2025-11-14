@@ -40,33 +40,33 @@
                 <!-- Transaction Type -->
                 <TextBlock Text="Loại giao dịch" Style="{StaticResource FormLabel}"/>
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,15">
-                    <RadioButton Content="Thu nhập" IsChecked="True" GroupName="TransactionType" Style="{StaticResource FormRadioButton}"/>
-                    <RadioButton Content="Chi tiêu" GroupName="TransactionType" Style="{StaticResource FormRadioButton}" Margin="20,0,0,0"/>
+                    <RadioButton x:Name="rbIncome" Content="Thu nhập" IsChecked="True" GroupName="TransactionType" Style="{StaticResource FormRadioButton}"/>
+                    <RadioButton x:Name="rbExpense" Content="Chi tiêu" GroupName="TransactionType" Style="{StaticResource FormRadioButton}" Margin="20,0,0,0"/>
                 </StackPanel>
 
                 <!-- Amount -->
                 <TextBlock Text="Số tiền (VNĐ)" Style="{StaticResource FormLabel}"/>
-                <TextBox Tag="0" Style="{StaticResource FormTextBox}"/>
+                <TextBox x:Name="txtAmount" Tag="0" Style="{StaticResource FormTextBox}"/>
 
                 <!-- Category -->
                 <TextBlock Text="Danh mục" Style="{StaticResource FormLabel}"/>
-                <ComboBox Style="{StaticResource FormComboBox}">
+                <ComboBox x:Name="cmbCategory" Style="{StaticResource FormComboBox}">
                     <ComboBoxItem IsSelected="True">Chọn danh mục</ComboBoxItem>
                 </ComboBox>
 
                 <!-- Description -->
                 <TextBlock Text="Mô tả" Style="{StaticResource FormLabel}"/>
-                <TextBox Tag="Nhập mô tả giao dịch..." Style="{StaticResource FormTextBox}" Height="80" TextWrapping="Wrap" AcceptsReturn="True"/>
+                <TextBox x:Name="txtDescription" Style="{StaticResource FormTextBox}" Height="80" TextWrapping="Wrap" AcceptsReturn="True"/>
 
                 <!-- Date -->
                 <TextBlock Text="Ngày" Style="{StaticResource FormLabel}"/>
-                <DatePicker SelectedDate="2025-10-06" Style="{StaticResource FormDatePicker}"/>
+                <DatePicker x:Name="dpDate" Style="{StaticResource FormDatePicker}"/>
             </StackPanel>
 
             <!-- Footer Buttons -->
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
                 <Button Content="Hủy" Click="CloseButton_Click" Style="{StaticResource SecondaryButton}"/>
-                <Button Content="Thêm giao dịch" Style="{StaticResource PrimaryButton}" Margin="10,0,0,0"/>
+                <Button x:Name="btnAddTransaction" Content="Thêm giao dịch" Style="{StaticResource PrimaryButton}" Margin="10,0,0,0" Click="BtnAddTransaction_Click"/>
             </StackPanel>
         </Grid>
     </Border>

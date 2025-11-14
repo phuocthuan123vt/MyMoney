@@ -31,4 +31,9 @@ The app supports both **personal** and **family** finance management, offering f
 - C# .NET (WPF)
 - SQL Server / SQLite
 - MVVM pattern
- dotnet run --project MyMoneyDesktop/MyMoneyDesktop.sdk.csproj
+
+### Hướng dẫn chạy ứng dụng
+Để chạy ứng dụng, mở terminal và nhập lệnh:
+```
+dotnet run --project MyMoneyDesktop/MyMoneyDesktop.csproj
+```

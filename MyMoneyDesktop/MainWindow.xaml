@@ -14,28 +14,9 @@
     </Window.Resources>
 
     <Grid>
-        <Border x:Name="ToastNotification"
-                Background="#FFC107"
-                CornerRadius="8"
-                Padding="12,8"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Top"
-                Margin="0,-10,0,0"
-                Visibility="Visible"
-                Opacity="0"
-                RenderTransformOrigin="0.5,0">
-            <Border.RenderTransform>
-                <TranslateTransform Y="-50"/>
-            </Border.RenderTransform>
-
-            <TextBlock x:Name="ToastText"
-                       Foreground="White"
-                       FontWeight="Bold"
-                       FontSize="14"
-                       Text="Đang kiểm tra hạn mức..."/>
-        </Border>
         <Grid Margin="20">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -55,8 +36,32 @@
                 <Button Grid.Column="1" Content="+ Thêm giao dịch" VerticalAlignment="Center" Style="{StaticResource PrimaryButton}" Click="AddTransactionButton_Click"/>
             </Grid>
 
+            <!-- Toast Notification -->
+            <Border x:Name="ToastNotification"
+                    Grid.Row="1"
+                    Background="#FF4444"
+                    CornerRadius="8"
+                    Padding="20,15"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Margin="0,0,0,15"
+                    Visibility="Collapsed"
+                    Opacity="1"
+                    RenderTransformOrigin="0.5,0">
+                <Border.RenderTransform>
+                    <TranslateTransform Y="0"/>
+                </Border.RenderTransform>
+
+                <TextBlock x:Name="ToastText"
+                           Foreground="White"
+                           FontWeight="Bold"
+                           FontSize="16"
+                           TextWrapping="Wrap"
+                           Text="Bạn đã vượt quá mức quản lý chi tiêu!"/>
+            </Border>
+
             <!-- Summary Cards -->
-            <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,20">
+            <UniformGrid Grid.Row="2" Columns="4" Margin="0,0,0,20">
                 <!-- Thu nhập -->
                 <Border Style="{StaticResource SummaryCard}">
                     <Grid>
@@ -120,7 +125,7 @@
 
 
             <!-- Tabs -->
-            <TabControl Grid.Row="2" Grid.RowSpan="2" Style="{StaticResource MainTabs}">
+            <TabControl Grid.Row="3" Grid.RowSpan="2" Style="{StaticResource MainTabs}">
                 <TabItem Style="{StaticResource MainTabItem}" IsSelected="True">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
@@ -220,7 +225,8 @@
                                                            Grid.Column="1"
                                                            VerticalAlignment="Center"
                                                            Width="45" Height="25"
-                                                           OnColor="Black"/>
+                                                           OnColor="Black"
+                                                           ToggleButtonClicked="ToggleControl_ToggleButtonClicked"/>
                                     </Grid>
 
                                     <StackPanel Margin="0,25,0,0"
@@ -253,7 +259,7 @@
                                                  VerticalContentAlignment="Center"
                                                  FontSize="14"
                                                  Padding="4,0"
-                                                 Text="10000000"/>
+                                                 Text=""/>
                                             </Grid>
                                         </Border>
 
@@ -283,7 +289,7 @@
                                                  VerticalContentAlignment="Center"
                                                  FontSize="14"
                                                  Padding="4,0"
-                                                 Text="80"/>
+                                                 Text=""/>
                                             </Grid>
                                         </Border>
 

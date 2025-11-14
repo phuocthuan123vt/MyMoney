@@ -9,7 +9,7 @@ namespace MyMoneyDesktop
     /// </summary>
     public partial class ToggleButtonControl : UserControl
     {
-        public event EventHandler<bool> ToggleButtonClicked;
+        public event EventHandler<bool>? ToggleButtonClicked;
         public ToggleButtonControl() => InitializeComponent();
      
         private void ToggleButton_Click(object sender, MouseButtonEventArgs e)

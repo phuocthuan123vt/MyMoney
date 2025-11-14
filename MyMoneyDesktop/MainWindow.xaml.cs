@@ -13,13 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
+using MyMoneyDesktop.Models;
 
 namespace MyMoneyDesktop
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private decimal dThuNhap = 15_000_000m;
-        private decimal dChiTieu = 5_000_000m;
+        private decimal dThuNhap = 0m;
+        private decimal dChiTieu = 0m;
         private decimal? dHanMuc;
         private int? iNguongCanhBao;
         private bool toastVisible = false;
@@ -101,22 +102,25 @@ namespace MyMoneyDesktop
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             var tb = sender as TextBox;
-            if (tb.Text == "10000000")
+            if (tb != null)
             {
-                tb.Text = "";
-                tb.Foreground = Brushes.Black;
-            }
-            if (tb.Text == "80")
-            {
-                tb.Text = "";
-                tb.Foreground = Brushes.Black;
+                if (tb.Text == "10000000")
+                {
+                    tb.Text = "";
+                    tb.Foreground = Brushes.Black;
+                }
+                if (tb.Text == "80")
+                {
+                    tb.Text = "";
+                    tb.Foreground = Brushes.Black;
+                }
             }
         }
 
         private void TextBox_LostFocus_MoneyLimit(object sender, RoutedEventArgs e)
         {
             var tb = sender as TextBox;
-            if (string.IsNullOrWhiteSpace(tb.Text))
+            if (tb != null && string.IsNullOrWhiteSpace(tb.Text))
             {
                 tb.Text = "10000000";
                 tb.Foreground = Brushes.Gray;
@@ -125,7 +129,7 @@ namespace MyMoneyDesktop
         private void TextBox_LostFocus_PercentageLimit(object sender, RoutedEventArgs e)
         {
             var tb = sender as TextBox;
-            if (string.IsNullOrWhiteSpace(tb.Text))
+            if (tb != null && string.IsNullOrWhiteSpace(tb.Text))
             {
                 tb.Text = "80";
                 tb.Foreground = Brushes.Gray;
@@ -151,7 +155,28 @@ namespace MyMoneyDesktop
                     Owner = this,
                     WindowStartupLocation = WindowStartupLocation.CenterOwner
                 };
-                addTransactionWindow.ShowDialog();
+                
+                if (addTransactionWindow.ShowDialog() == true)
+                {
+                    // Thêm giao dịch vào TransactionManager
+                    string type = addTransactionWindow.IsIncome ? "Income" : "Expense";
+                    var transaction = new Transaction(
+                        addTransactionWindow.Amount,
+                        type,
+                        "Khác", // Để trống tạm thời, sau có thể cập nhật
+                        addTransactionWindow.Description ?? "",
+                        addTransactionWindow.TransactionDate
+                    );
+                    
+                    TransactionManager.Instance.AddTransaction(transaction);
+
+                    // Cập nhật dữ liệu tổng quan
+                    ThuNhap = TransactionManager.Instance.GetTotalIncome();
+                    ChiTieu = TransactionManager.Instance.GetTotalExpense();
+
+                    // Kiểm tra hạn mức sau khi cập nhật
+                    KiemTraVuotHanMuc();
+                }
             }
             catch (Exception ex)
             {
@@ -181,7 +206,12 @@ namespace MyMoneyDesktop
                 Properties.Settings.Default.Save();
                 dHanMuc = hanMuc;
                 iNguongCanhBao = nguong;
+                
+                // Kiểm tra lại hạn mức ngay sau khi lưu
                 KiemTraVuotHanMuc();
+                
+                // Thông báo thành công
+                MessageBox.Show("✅ Cài đặt hạn mức đã được lưu thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -191,18 +221,35 @@ namespace MyMoneyDesktop
 
         private void KiemTraVuotHanMuc()
         {
-            if (dHanMuc == null || iNguongCanhBao == null) return;
-
-            decimal hanMuc = dHanMuc.Value;
-            decimal nguong = hanMuc * (iNguongCanhBao.Value / 100m);
-
-            if (dChiTieu >= hanMuc)
+            // Chỉ kiểm tra nếu toggle "Bật hạn mức chi tiêu" được bật
+            if (toggleControl == null || !toggleControl.IsChecked)
             {
-                ShowToast("Bạn đã vượt hạn mức chi tiêu!", new SolidColorBrush(Colors.Red));
+                HideToast();
+                return;
+            }
+
+            // Nếu chưa nhập hạn mức (SpendingLimit <= 0), không hiện cảnh báo
+            decimal hanMuc = Properties.Settings.Default.SpendingLimit;
+            int nguongPercent = Properties.Settings.Default.WarningThreshold;
+            
+            if (hanMuc <= 0 || nguongPercent <= 0)
+            {
+                HideToast();
+                return;
+            }
+
+            decimal nguong = hanMuc * (nguongPercent / 100m);
+            
+            // Debug: In ra giá trị để kiểm tra
+            System.Diagnostics.Debug.WriteLine($"Chi tiêu: {dChiTieu:N0}, Hạn mức: {hanMuc:N0}, Ngưỡng ({nguongPercent}%): {nguong:N0}");
+
+            if (dChiTieu > hanMuc)
+            {
+                ShowToast("⚠️ Bạn đã vượt quá hạn mức chi tiêu!", new SolidColorBrush(Color.FromArgb(255, 255, 68, 68)));
             }
             else if (dChiTieu >= nguong)
             {
-                ShowToast($"Chi tiêu đã đạt hơn {iNguongCanhBao}% hạn mức!", new SolidColorBrush(Colors.Gold));
+                ShowToast($"⚠️ Chi tiêu đã đạt {nguongPercent}% - Sắp vượt hạn mức chi tiêu!", new SolidColorBrush(Color.FromArgb(255, 255, 193, 7)));
             }
             else
             {
@@ -251,6 +298,12 @@ namespace MyMoneyDesktop
 
                 ToastNotification.BeginAnimation(OpacityProperty, fadeOut);
             }
+        }
+
+        private void ToggleControl_ToggleButtonClicked(object sender, bool isChecked)
+        {
+            // Khi toggle được bật/tắt, kiểm tra lại hạn mức
+            KiemTraVuotHanMuc();
         }
     }
 }
